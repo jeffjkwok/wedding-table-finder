@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: #f4f1f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decorative botanical elements */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    width: 300px;
+    height: 400px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><path d="M50,50 Q100,20 150,50 Q200,80 250,50 Q200,100 150,120 Q100,140 50,120 Q20,80 50,50" fill="%23d4b5a0" opacity="0.3"/><path d="M80,150 Q120,130 160,150 Q200,170 240,150 Q210,200 160,220 Q110,240 80,220 Q60,190 80,150" fill="%23c4a597" opacity="0.25"/><circle cx="100" cy="80" r="3" fill="%23a67c7a" opacity="0.4"/><circle cx="180" cy="180" r="2" fill="%23a67c7a" opacity="0.3"/></svg>') no-repeat;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -120px;
+    /* width: 350px; */
+    height: 450px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 450"><path d="M100,80 Q140,60 180,80 Q220,100 260,80 Q230,130 180,150 Q130,170 100,150 Q80,120 100,80" fill="%23d4b5a0" opacity="0.25"/><path d="M120,200 Q160,180 200,200 Q240,220 280,200 Q250,250 200,270 Q150,290 120,270 Q100,240 120,200" fill="%23c4a597" opacity="0.2"/><ellipse cx="150" cy="120" rx="4" ry="2" fill="%23a67c7a" opacity="0.35"/><ellipse cx="220" cy="240" rx="3" ry="2" fill="%23a67c7a" opacity="0.3"/></svg>') no-repeat;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0;
+    padding: 60px 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1s ease-out;
+    border: 1px solid rgba(212, 181, 160, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.couple-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2em;
+    font-weight: 300;
+    color: #5a4b47;
+    margin-bottom: 8px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.ampersand {
+    font-size: 0.7em;
+    font-weight: 400;
+    margin: 0 15px;
+    color: #a67c7a;
+}
+
+.date-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95em;
+    color: #7a6b66;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    color: #5a4b47;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.instructions {
+    color: #7a6b66;
+    margin-bottom: 35px;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 16px;
+    border: 1px solid #d4b5a0;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #fefcfb;
+    font-family: 'Lato', sans-serif;
+    color: #5a4b47;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    border-color: #a67c7a;
+    box-shadow: 0 0 0 2px rgba(166, 124, 122, 0.1);
+    background: #ffffff;
+}
+
+input[type="text"]::placeholder {
+    color: #b5a09a;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.result {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 0;
+    font-size: 16px;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-family: 'Lato', sans-serif;
+}
+
+.result.success {
+    background: #faf8f7;
+    color: #5a4b47;
+    border: 2px solid #a67c7a;
+    animation: slideIn 0.5s ease-out;
+}
+
+.result.error {
+    background: #fefcfb;
+    color: #5a4b47;
+    border: 1px solid #d4b5a0;
+    animation: slideIn 0.5s ease-out;
+}
+
+.result.empty {
+    background: #fefcfb;
+    color: #7a6b66;
+    border: 1px solid #e8ddd8;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.table-info {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: #5a4b47;
+    margin-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.welcome-msg {
+    font-size: 0.95em;
+    font-style: italic;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+.matches-list {
+    margin: 20px 0;
+}
+
+.match-item {
+    display: block;
+    width: 100%;
+    background: #fefcfb;
+    border: 1px solid #d4b5a0;
+    border-radius: 0;
+    padding: 18px 24px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    color: #5a4b47;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-item:hover {
+    background: #faf8f7;
+    border-color: #a67c7a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(166, 124, 122, 0.15);
+}
+
+.match-item:active {
+    transform: translateY(0);
+}
+
+.match-name {
+    font-weight: 400;
+    color: #5a4b47;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+}
+
+.match-table {
+    color: #a67c7a;
+    font-weight: 500;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.matches-header {
+    color: #5a4b47;
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-size: 1.05em;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 40px 30px;
+    }
+    
+    .couple-names {
+        font-size: 2.5em;
+        letter-spacing: 4px;
+    }
+    
+    input[type="text"] {
+        font-size: 15px;
+        padding: 16px 20px;
+    }
+
+    .match-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+}
